@@ -16,5 +16,6 @@ public class MainActivity extends AppCompatActivity {
         actionBar.setCustomView(R.layout.custom_action_bar);
 
         //ThienAnh
+        //a comment
     }
 }

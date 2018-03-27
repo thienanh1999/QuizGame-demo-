@@ -14,7 +14,8 @@
         android:layout_gravity="right"
         app:cardBackgroundColor="#86b97bd9"
         app:cardCornerRadius="8dp"
-        android:layout_margin="35dp">
+        android:layout_margin="35dp"
+        android:id="@+id/cv_flagsGame">
 
         <TextView
             android:layout_width="wrap_content"
@@ -32,7 +33,8 @@
         android:layout_gravity="left"
         app:cardBackgroundColor="#86b97bd9"
         app:cardCornerRadius="8dp"
-        android:layout_margin="35dp">
+        android:layout_margin="35dp"
+        android:id="@+id/cv_magicWord">
 
         <TextView
             android:layout_width="wrap_content"
@@ -50,7 +52,8 @@
         android:layout_gravity="right"
         app:cardBackgroundColor="#86b97bd9"
         app:cardCornerRadius="8dp"
-        android:layout_margin="35dp">
+        android:layout_margin="35dp"
+        android:id="@+id/cv_dashboard">
 
         <TextView
             android:layout_width="wrap_content"
@@ -68,7 +71,8 @@
         android:layout_gravity="left"
         app:cardBackgroundColor="#86b97bd9"
         app:cardCornerRadius="8dp"
-        android:layout_margin="35dp">
+        android:layout_margin="35dp"
+        android:id="@+id/cv_credit">
 
         <TextView
             android:layout_width="wrap_content"

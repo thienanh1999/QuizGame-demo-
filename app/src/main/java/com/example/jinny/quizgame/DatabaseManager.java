@@ -6,6 +6,7 @@ import android.database.sqlite.SQLiteDatabase;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 public class DatabaseManager {
     private static final String TABLE_WORD = "tbl_word";
@@ -49,5 +50,38 @@ public class DatabaseManager {
             cursor.moveToNext();
         }
         return wordModelList;
+    }
+
+    public MagicWordQuestionModel getRandomWord(int preId) {
+        sqLiteDatabase = assetHelper.getReadableDatabase();
+        Cursor cursor;
+
+        do {
+            cursor = sqLiteDatabase.rawQuery("select * from tbl_word " +
+                    " where id <> " + preId +
+                    " order by random() limit 1", null);
+        } while (cursor.getCount() == 0);
+
+        cursor.moveToFirst();
+        int id = cursor.getInt(0);
+        String origin = cursor.getString(1);
+        String explanation = cursor.getString(2);
+        String image = cursor.getString(5);
+        Random random = new Random();
+        int right = random.nextInt(4 - 1 + 1) + 1;
+
+        List<String> word = new ArrayList<>();
+        for (int i = 1; i <= 3; i++) {
+            do {
+                cursor = sqLiteDatabase.rawQuery("select * from tbl_word " +
+                        " where id <> " + id +
+                        " order by random() limit 1", null);
+            } while (cursor.getCount() == 0);
+            cursor.moveToFirst();
+            String word1 = cursor.getString(1);
+            word.add(word1);
+        }
+        MagicWordQuestionModel magicWordQuestionModel = new MagicWordQuestionModel(id, origin, explanation, image, word, right);
+        return magicWordQuestionModel;
     }
 } 

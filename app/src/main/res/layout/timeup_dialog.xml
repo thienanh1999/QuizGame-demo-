@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="300dp"
+    android:layout_height="80dp"
+    android:background="@drawable/curve_shape"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/tv_message"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_margin="10dp"
+        android:text="Time up!!!"
+        android:textColor="@color/whiteText"
+        android:textSize="18sp"
+        android:textStyle="bold" />
+
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:background="@color/themecolor"
+        android:orientation="horizontal" >
+
+        <Button
+            android:id="@+id/bt_ok"
+            android:layout_width="100dp"
+            android:layout_height="30dp"
+            android:background="@color/whiteText"
+            android:text="OK"
+            android:textColor="#5DBCD2"
+            android:textStyle="bold"/>
+
+        <Button
+            android:id="@+id/bt_try"
+            android:layout_width="100dp"
+            android:layout_height="30dp"
+            android:layout_marginLeft="5dp"
+            android:background="@color/whiteText"
+            android:text="Try Again"
+            android:textColor="#5DBCD2"
+            android:textStyle="bold" />
+
+    </LinearLayout>
+
+</LinearLayout>

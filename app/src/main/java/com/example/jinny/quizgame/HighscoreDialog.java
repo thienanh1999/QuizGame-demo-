@@ -7,17 +7,15 @@ import android.os.Bundle;
 import android.view.View;
 import android.view.Window;
 import android.widget.Button;
+import android.widget.EditText;
 
-import com.example.jinny.quizgame.R;
-
-public class TimeUpDialog extends Dialog implements
-        android.view.View.OnClickListener {
-
+public class HighscoreDialog extends Dialog implements android.view.View.OnClickListener {
     public Activity c;
     public Dialog d;
-    public Button yes, no;
+    public EditText EtName;
+    public Button BtOk;
 
-    public TimeUpDialog (Activity a) {
+    public HighscoreDialog (Activity a) {
         super(a);
         this.c = a;
     }
@@ -27,26 +25,26 @@ public class TimeUpDialog extends Dialog implements
         super.onCreate(savedInstanceState);
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.timeup_dialog);
-        yes = (Button) findViewById(R.id.bt_ok);
-        no = (Button) findViewById(R.id.bt_try);
-        yes.setOnClickListener(this);
-        no.setOnClickListener(this);
-
+        BtOk = findViewById(R.id.bt_ok);
+        EtName = findViewById(R.id.et_name);
+        BtOk.setOnClickListener(this);
     }
 
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.bt_ok:
-                c.finish();
-                break;
-            case R.id.bt_try:
+                String name;
+                name = EtName.getText().toString();
+                save(name);
                 c.finish();
                 Intent intent = new Intent(c, MagicWordActivity.class);
                 c.startActivity(intent);
                 break;
-            default:
-                break;
         }
+    }
+
+    private void save(String name) {
+        int score;
     }
 }

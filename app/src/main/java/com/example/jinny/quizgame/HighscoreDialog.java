@@ -9,15 +9,19 @@ import android.view.Window;
 import android.widget.Button;
 import android.widget.EditText;
 
-public class HighscoreDialog extends Dialog implements android.view.View.OnClickListener {
+public class HighscoreDialog extends Dialog implements android.view.View.OnClickListener{
     public Activity c;
     public Dialog d;
     public EditText EtName;
     public Button BtOk;
+    int score;
+    int gameid;
 
-    public HighscoreDialog (Activity a) {
+    public HighscoreDialog (Activity a, int score, int gameid) {
         super(a);
         this.c = a;
+        this.score = score;
+        this.gameid = gameid;
     }
 
     @Override
@@ -45,6 +49,10 @@ public class HighscoreDialog extends Dialog implements android.view.View.OnClick
     }
 
     private void save(String name) {
-        int score;
+        Intent intent = new Intent(c, Dashboard.class);
+        intent.putExtra("name", name);
+        intent.putExtra("score", score);
+        intent.putExtra("game", gameid);
+        c.startActivity(intent);
     }
 }

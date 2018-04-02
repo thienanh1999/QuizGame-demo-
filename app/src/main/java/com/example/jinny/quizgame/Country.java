@@ -1,4 +1,4 @@
-package com.example.trungspc.quizgame.model;
+package com.example.jinny.quizgame;
 
 /**
  * Created by Trung's PC on 3/31/2018.

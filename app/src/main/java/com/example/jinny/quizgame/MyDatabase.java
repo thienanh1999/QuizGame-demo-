@@ -1,4 +1,4 @@
-package com.example.trungspc.quizgame.database;
+package com.example.jinny.quizgame;
 
 import android.content.Context;
 

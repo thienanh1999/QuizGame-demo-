@@ -1,7 +1,6 @@
 package com.example.jinny.quizgame;
 
 import android.content.DialogInterface;
-import android.content.Intent;
 import android.os.CountDownTimer;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
@@ -12,8 +11,6 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
-
-import com.bumptech.glide.Glide;
 
 import java.util.ArrayList;
 import java.util.Collections;

@@ -45,7 +45,6 @@ public class MagicWordActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_magic_word);
         ButterKnife.bind(this);
-        getActionBar().hide();
 
         setupUI();
     }

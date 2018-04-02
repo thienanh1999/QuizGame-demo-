@@ -19,7 +19,9 @@
             </intent-filter>
         </activity>
         <activity android:name=".MagicWordActivity" />
-        <activity android:name=".SaveScoreActivity"></activity>
+        <activity android:name=".SaveScoreActivity" />
+        <activity android:name=".FlagGameActivity">
+        </activity>
     </application>
 
 </manifest>

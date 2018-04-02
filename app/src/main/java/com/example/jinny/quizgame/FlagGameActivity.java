@@ -19,7 +19,7 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Random;
 
-public class FlagGameActitvity extends AppCompatActivity implements View.OnClickListener{
+public class FlagGameActivity extends AppCompatActivity implements View.OnClickListener{
 
     private static final String TAG = "FlagGameActitvity";
     TextView tvTimer;
@@ -69,7 +69,7 @@ public class FlagGameActitvity extends AppCompatActivity implements View.OnClick
 
             @Override
             public void onFinish() {
-                new AlertDialog.Builder(FlagGameActitvity.this)
+                new AlertDialog.Builder(FlagGameActivity.this)
                         .setTitle("Game over")
                         .setMessage("You got " + points + ((points < 1) ? " point" : " points") + "\nPlay again?")
                         .setPositiveButton("Sure", new DialogInterface.OnClickListener() {

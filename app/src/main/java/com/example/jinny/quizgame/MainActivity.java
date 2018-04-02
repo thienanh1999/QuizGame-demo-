@@ -37,12 +37,16 @@ public class MainActivity extends AppCompatActivity {
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.cv_flagsGame:
+                Intent intent1 = new Intent(MainActivity.this, FlagGameActivity.class);
+                startActivity(intent1);
                 break;
             case R.id.cv_magicWord:
                 Intent intent = new Intent(MainActivity.this, MagicWordActivity.class);
                 startActivity(intent);
                 break;
             case R.id.cv_dashboard:
+                Intent intent2 = new Intent(MainActivity.this, HighscoreActivity.class);
+                startActivity(intent2);
                 break;
             case R.id.cv_credit:
                 break;

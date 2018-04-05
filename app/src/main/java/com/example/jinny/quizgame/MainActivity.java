@@ -41,12 +41,12 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(flagIntent);
                 break;
             case R.id.cv_magicWord:
-                Intent intent = new Intent(MainActivity.this, MagicWordActivity.class);
-                startActivity(intent);
+                Intent magicIntent = new Intent(MainActivity.this, MagicWordActivity.class);
+                startActivity(magicIntent);
                 break;
             case R.id.cv_dashboard:
-                Intent intent1 = new Intent(this, HighscoreActivity.class);
-                startActivity(intent1);
+                Intent dashboardIntent = new Intent(this, HighscoreActivity.class);
+                startActivity(dashboardIntent);
                 break;
             case R.id.cv_credit:
                 break;

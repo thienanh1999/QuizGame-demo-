@@ -1,32 +1,31 @@
 package com.example.jinny.quizgame;
 
 import android.animation.ValueAnimator;
-<<<<<<< HEAD
-=======
 import android.content.SharedPreferences;
-import android.media.Image;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
->>>>>>> 3409ab0e55e30cd77ba18489352a2a61f860be00
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
+import android.view.View;
 import android.view.animation.LinearInterpolator;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
-import android.widget.TextView;
 
-public class HighscoreActivity extends AppCompatActivity {
+public class SaveScoreActivity extends AppCompatActivity {
 
-    TextView tvGame1;
-    TextView tvGame2;
+    EditText etName;
     SharedPreferences sharedPreferences;
-    String name1;
-    String name2;
-    int score1;
-    int score2;
+    SharedPreferences.Editor editor;
+    Button btOK;
+    int score;
+    int gameid;
+    String name;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_high_score);
+        setContentView(R.layout.activity_save_score);
+        getActionBar().hide();
 
         final ImageView backgroundOne = findViewById(R.id.background_one);
         final ImageView backgroundTwo = findViewById(R.id.background_two);
@@ -47,16 +46,25 @@ public class HighscoreActivity extends AppCompatActivity {
         });
         animator.start();
 
-        tvGame1 = findViewById(R.id.tv_game1);
-        tvGame2 = findViewById(R.id.tv_game2);
+        etName = findViewById(R.id.et_name);
+        btOK = findViewById(R.id.bt_ok);
         sharedPreferences = getSharedPreferences("Dashboard", MODE_PRIVATE);
-        name1 = sharedPreferences.getString("name1", null);
-        name2 = sharedPreferences.getString("name2", null);
-        score1 = sharedPreferences.getInt("score1", 0);
-        score2 = sharedPreferences.getInt("score2", 0);
-        name1 = name1 + " : " + Integer.toString(score1);
-        name2 = name2 + " : " + Integer.toString(score2);
-        tvGame1.setText(name1);
-        tvGame2.setText(name2);
+        editor = sharedPreferences.edit();
+        btOK.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                name = etName.getText().toString();
+                score = (int) getIntent().getSerializableExtra("score");
+                gameid = (int) getIntent().getSerializableExtra("gameid");
+                if (gameid == 1) {
+                    editor.putString("name1", name);
+                    editor.putInt("score1", score);
+                } else {
+                    editor.putString("name2", name);
+                    editor.putInt("score2", score);
+                }
+            }
+        });
+        editor.commit();
     }
 }

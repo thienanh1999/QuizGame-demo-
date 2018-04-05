@@ -1,16 +1,12 @@
-package com.example.trungspc.quizgame.database;
+package com.example.jinny.quizgame;
 
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.util.Log;
 
-import com.example.trungspc.quizgame.model.Country;
-
 import java.util.ArrayList;
 import java.util.List;
-
-import static android.content.ContentValues.TAG;
 
 /**
  * Created by Trung's PC on 3/31/2018.

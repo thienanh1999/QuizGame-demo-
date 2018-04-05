@@ -1,9 +1,8 @@
-package com.example.trungspc.quizgame;
+package com.example.jinny.quizgame;
 
 import android.animation.ValueAnimator;
-import android.media.Image;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.animation.LinearInterpolator;
 import android.widget.ImageView;
 

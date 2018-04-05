@@ -49,7 +49,7 @@ public class HighscoreDialog extends Dialog implements android.view.View.OnClick
     }
 
     private void save(String name) {
-        Intent intent = new Intent(c, Dashboard.class);
+        Intent intent = new Intent(c, HighscoreActivity.class);
         intent.putExtra("name", name);
         intent.putExtra("score", score);
         intent.putExtra("game", gameid);

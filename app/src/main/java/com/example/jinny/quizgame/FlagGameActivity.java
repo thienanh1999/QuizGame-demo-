@@ -1,7 +1,6 @@
 package com.example.jinny.quizgame;
 
 import android.content.DialogInterface;
-import android.content.Intent;
 import android.os.CountDownTimer;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
@@ -20,9 +19,9 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Random;
 
-public class FlagGameActitvity extends AppCompatActivity implements View.OnClickListener{
+public class FlagGameActivity extends AppCompatActivity implements View.OnClickListener{
 
-    private static final String TAG = "FlagGameActitvity";
+    private static final String TAG = "FlagGameActivity";
     TextView tvTimer;
     TextView tvPoints;
     Button btnCountry1;
@@ -41,7 +40,7 @@ public class FlagGameActitvity extends AppCompatActivity implements View.OnClick
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_flag_game_actitvity);
 
         points = 0;
 
@@ -70,7 +69,7 @@ public class FlagGameActitvity extends AppCompatActivity implements View.OnClick
 
             @Override
             public void onFinish() {
-                new AlertDialog.Builder(FlagGameActitvity.this)
+                new AlertDialog.Builder(FlagGameActivity.this)
                         .setTitle("Game over")
                         .setMessage("You got " + points + ((points < 1) ? " point" : " points") + "\nPlay again?")
                         .setPositiveButton("Sure", new DialogInterface.OnClickListener() {
@@ -91,12 +90,12 @@ public class FlagGameActitvity extends AppCompatActivity implements View.OnClick
         tvTimer = findViewById(R.id.tv_time);
         tvPoints = findViewById(R.id.tv_point);
         btnCountry1 = findViewById(R.id.btn_country1);
-        btnCountry1.setOnClickListener(this);
         btnCountry2 = findViewById(R.id.btn_country2);
-        btnCountry2.setOnClickListener(this);
         btnCountry3 = findViewById(R.id.btn_country3);
-        btnCountry3.setOnClickListener(this);
         btnCountry4 = findViewById(R.id.btn_country4);
+        btnCountry1.setOnClickListener(this);
+        btnCountry2.setOnClickListener(this);
+        btnCountry3.setOnClickListener(this);
         btnCountry4.setOnClickListener(this);
         ivFlag = findViewById(R.id.iv_flag);
         ivBack = findViewById(R.id.iv_back);
@@ -179,7 +178,7 @@ public class FlagGameActitvity extends AppCompatActivity implements View.OnClick
                 }
                 break;
             case R.id.iv_back:
-                onBackPressed();
+                this.finish();
                 break;
         }
     }

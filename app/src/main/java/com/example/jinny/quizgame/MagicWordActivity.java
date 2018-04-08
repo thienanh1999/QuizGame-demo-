@@ -1,8 +1,12 @@
 package com.example.jinny.quizgame;
 
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.CountDownTimer;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -15,7 +19,7 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 public class MagicWordActivity extends AppCompatActivity {
-
+    private static final String TAG = "MagicWordActivity";
     @BindView(R.id.iv_back)
     ImageView ivBack;
     @BindView(R.id.tv_point)
@@ -39,6 +43,8 @@ public class MagicWordActivity extends AppCompatActivity {
     public int score;
     public int time;
     MagicWordQuestionModel magicWordQuestionModel;
+    private boolean isPaused;
+    private long remainingTime;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,14 +59,41 @@ public class MagicWordActivity extends AppCompatActivity {
         score = 0;
         time = 60;
         tvPoint.setText(Integer.toString(score));
+        isPaused = false;
         new CountDownTimer(60000, 1000) {
 
             public void onTick(long millisUntilFinished) {
-                tvTime.setText("" + millisUntilFinished / 1000);
+                if (isPaused)
+                    cancel();
+                else {
+                    tvTime.setText("" + millisUntilFinished / 1000);
+                    remainingTime = millisUntilFinished;
+                }
             }
             public void onFinish() {
-                TimeUpDialog timeUpDialog =new TimeUpDialog(MagicWordActivity.this);
-                timeUpDialog.show();
+                Log.d(TAG, "onFinish: ");
+                new AlertDialog.Builder(MagicWordActivity.this)
+                        .setTitle("Game over")
+                        .setMessage("You got " + score + ((score < 1) ? " point" : " points") + "\nPlay again?")
+                        .setPositiveButton("Sure", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialogInterface, int i) {
+                                finish();
+                                startActivity(getIntent());
+                            }
+                        })
+                        .setNegativeButton("Nah", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                Intent intent = new Intent(MagicWordActivity.this, SaveScoreActivity.class);
+                                intent.putExtra("gameid", 2);
+                                intent.putExtra("score", score);
+                                MagicWordActivity.this.finish();
+                                startActivity(intent);
+                            }
+                        })
+                        .setCancelable(false)
+                        .show();
             }
 
         }.start();
@@ -141,5 +174,64 @@ public class MagicWordActivity extends AppCompatActivity {
         else
             if (score > 0) score--;
         tvPoint.setText(Integer.toString(score));
+    }
+
+    @Override
+    public void onBackPressed() {
+        isPaused = true;
+        new AlertDialog.Builder(MagicWordActivity.this)
+                .setTitle("Game Paused")
+                .setMessage("Continue game?")
+                .setPositiveButton("Sure", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        isPaused = false;
+                        new CountDownTimer(remainingTime, 1000) {
+                            @Override
+                            public void onTick(long millisUntilFinished) {
+                                if (isPaused)
+                                    cancel();
+                                else {
+                                    tvTime.setText("" + millisUntilFinished / 1000);
+                                    remainingTime = millisUntilFinished;
+                                }
+                            }
+
+                            @Override
+                            public void onFinish() {
+                                new AlertDialog.Builder(MagicWordActivity.this)
+                                        .setTitle("Game over")
+                                        .setMessage("You got " + score + ((score < 1) ? " point" : " points") + "\nPlay again?")
+                                        .setPositiveButton("Sure", new DialogInterface.OnClickListener() {
+                                            @Override
+                                            public void onClick(DialogInterface dialogInterface, int i) {
+                                                finish();
+                                                startActivity(getIntent());
+                                            }
+                                        })
+                                        .setNegativeButton("Nah", new DialogInterface.OnClickListener() {
+                                            @Override
+                                            public void onClick(DialogInterface dialog, int which) {
+                                                Intent intent = new Intent(MagicWordActivity.this, SaveScoreActivity.class);
+                                                intent.putExtra("gameid", 2);
+                                                intent.putExtra("score", score);
+                                                MagicWordActivity.this.finish();
+                                                startActivity(intent);
+                                            }
+                                        })
+                                        .setCancelable(false)
+                                        .show();
+                            }
+                        }.start();
+                    }
+                })
+                .setNegativeButton("Nah", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        MagicWordActivity.this.finish();
+                    }
+                })
+                .setCancelable(false)
+                .show();
     }
 }

@@ -1,12 +1,7 @@
 package com.example.jinny.quizgame;
 
 import android.animation.ValueAnimator;
-<<<<<<< HEAD
-=======
 import android.content.SharedPreferences;
-import android.media.Image;
-import android.support.v7.app.AppCompatActivity;
->>>>>>> 3409ab0e55e30cd77ba18489352a2a61f860be00
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.animation.LinearInterpolator;
@@ -52,10 +47,16 @@ public class HighscoreActivity extends AppCompatActivity {
         sharedPreferences = getSharedPreferences("Dashboard", MODE_PRIVATE);
         name1 = sharedPreferences.getString("name1", null);
         name2 = sharedPreferences.getString("name2", null);
-        score1 = sharedPreferences.getInt("score1", 0);
-        score2 = sharedPreferences.getInt("score2", 0);
-        name1 = name1 + " : " + Integer.toString(score1);
-        name2 = name2 + " : " + Integer.toString(score2);
+        if (name1 == null) name1 = "";
+        else {
+            score1 = sharedPreferences.getInt("score1", 0);
+            name1 = name1 + " : " + Integer.toString(score1);
+        }
+        if (name2 == null) name2 = "";
+        else {
+            score2 = sharedPreferences.getInt("score2", 0);
+            name2 = name2 + " : " + Integer.toString(score2);
+        }
         tvGame1.setText(name1);
         tvGame2.setText(name2);
     }

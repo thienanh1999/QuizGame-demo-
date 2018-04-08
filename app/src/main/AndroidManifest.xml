@@ -19,14 +19,9 @@
             </intent-filter>
         </activity>
         <activity android:name=".MagicWordActivity" />
-<<<<<<< HEAD
         <activity android:name=".FlagGameActivity"></activity>
         <activity android:name=".HighscoreActivity" android:theme="@style/Theme.AppCompat.DayNight.NoActionBar"></activity>
-=======
-        <activity android:name=".SaveScoreActivity" />
-        <activity android:name=".FlagGameActivity">
-        </activity>
->>>>>>> 3409ab0e55e30cd77ba18489352a2a61f860be00
+        <activity android:name=".SaveScoreActivity"></activity>
     </application>
 
 </manifest>

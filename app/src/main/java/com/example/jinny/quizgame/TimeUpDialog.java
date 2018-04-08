@@ -42,11 +42,14 @@ public class TimeUpDialog extends Dialog implements
                 break;
             case R.id.bt_try:
                 c.finish();
-                Intent intent = new Intent(c, MagicWordActivity.class);
+                Intent intent = new Intent(c, SaveScoreActivity.class);
                 c.startActivity(intent);
                 break;
-            default:
-                break;
         }
+    }
+
+    @Override
+    public void setCancelable(boolean flag) {
+        super.setCancelable(false);
     }
 }
